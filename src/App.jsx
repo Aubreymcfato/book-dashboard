@@ -75,3 +75,10 @@ export default function App() {
         <select
           value={selectedWeek}
           onChange={(e) => setSe
+                      </table>
+        </div>
+      </>
+    )}
+  </div>
+);
+}
