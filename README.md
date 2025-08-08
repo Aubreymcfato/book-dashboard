@@ -1,1 +1,1 @@
-Questa è una prova, vediamo come va.
+Questa è una prova con ChatGPT, vediamo come va.
