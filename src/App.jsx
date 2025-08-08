@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function BookSalesDashboard() {
+export default function App() {
   const [weeklyData, setWeeklyData] = useState({});
   const [selectedWeek, setSelectedWeek] = useState("");
   const [filter, setFilter] = useState("");
@@ -46,4 +46,32 @@ export default function BookSalesDashboard() {
     )
   );
 
-  co
+  const topAuthors = Object.entries(
+    filtered.reduce((acc, book) => {
+      const author = book["Autore"] || "Sconosciuto";
+      acc[author] = (acc[author] || 0) + parseInt(book["Vendite"] || 0);
+      return acc;
+    }, {})
+  )
+    .map(([name, sales]) => ({ name, sales }))
+    .sort((a, b) => b.sales - a.sales)
+    .slice(0, 10);
+
+  return (
+    <div style={{ padding: "1rem" }}>
+      <h1 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+        Dashboard Vendite Libri
+      </h1>
+
+      <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+        <input type="file" accept=".csv" onChange={handleFileUpload} />
+        <input
+          type="text"
+          placeholder="Filtra per titolo, autore, editore..."
+          value={filter}
+          onChange={handleFilterChange}
+          style={{ marginLeft: "1rem", padding: "0.3rem" }}
+        />
+        <select
+          value={selectedWeek}
+          onChange={(e) => setSe
